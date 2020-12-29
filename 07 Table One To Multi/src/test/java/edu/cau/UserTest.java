@@ -33,18 +33,17 @@ public class UserTest {
     @Test
     public void getUserOrder(){
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        List<Order> orders = mapper.selectAll();
+        List<User> users = mapper.findAll();
 
-        orders.forEach(System.out::println);
+        users.forEach(System.out::println);
     }
 
 }
 
-/**
- * Order{id=1, orderTime='2018-12-12', total=3000.0, user=User{id=1, username='lucy', password='123', birthday='2018-12-12'}}
- * Order{id=2, orderTime='2018-12-12', total=4000.0, user=User{id=1, username='lucy', password='123', birthday='2018-12-12'}}
- * Order{id=3, orderTime='2018-12-12', total=5000.0, user=User{id=2, username='haohao', password='123', birthday='2019-12-12'}}
- */
 
+/**
+ * User{id=1, username='lucy', password='123', birthday='2018-12-12', orderList=[Order{id=1, orderTime='2018-12-12', total=3000.0, user=null}, Order{id=2, orderTime='2018-12-12', total=4000.0, user=null}]}
+ * User{id=2, username='haohao', password='123', birthday='2019-12-12', orderList=[Order{id=3, orderTime='2018-12-12', total=5000.0, user=null}]}
+ */
