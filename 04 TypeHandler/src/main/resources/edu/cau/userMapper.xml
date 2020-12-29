@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.cau.UserMapper">
+    <select id="selectUsers" resultType="edu.cau.User">
+        select * from users
+    </select>
+    <!--  #{level}  -->
+    <insert id="save" parameterType="edu.cau.User">
+        insert into users(username,password,level) values (#{username},#{password},#{level})
+    </insert>
+</mapper>
