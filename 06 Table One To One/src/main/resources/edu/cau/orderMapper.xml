@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.cau.OrderMapper">
+
+    <resultMap id="selectAll" type="order">
+        <id column="oid" property="id" />
+        <result column="ordertime" property="orderTime"/>
+        <result column="total" property="total"/>
+        <result column="uid" property="user.id"/>
+        <result column="username" property="user.username"/>
+        <result column="password" property="user.password"/>
+        <result column="birthday" property="user.birthday"/>
+    </resultMap>
+    <select id="selectAll" resultMap="selectAll">
+        SELECT * ,o.`id` oid FROM orders o ,USER u WHERE o.`uid` = u.`id`;
+    </select>
+
+</mapper>
