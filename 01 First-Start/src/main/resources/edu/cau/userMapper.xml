@@ -11,4 +11,8 @@
     <insert id="save" parameterType="edu.cau.User">
         insert into users(username,password) values (#{username},#{password})
     </insert>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from users where id = #{userId}
+    </delete>
 </mapper>

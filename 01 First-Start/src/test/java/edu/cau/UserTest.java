@@ -51,6 +51,12 @@ public class UserTest {
 
         sqlSession.commit();
         System.out.println("插入成功"+result);
+    }
 
+    @Test
+    public void deleteUser(){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        sqlSession.delete("userMapper.deleteUser",3);
+        sqlSession.commit();
     }
 }
