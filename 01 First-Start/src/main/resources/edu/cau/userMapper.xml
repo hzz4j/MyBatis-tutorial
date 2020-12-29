@@ -3,7 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="userMapper">
+
     <select id="selectAllUsers" resultType="edu.cau.User">
         select * from users
       </select>
+
+    <insert id="save" parameterType="edu.cau.User">
+        insert into users(username,password) values (#{username},#{password})
+    </insert>
 </mapper>
