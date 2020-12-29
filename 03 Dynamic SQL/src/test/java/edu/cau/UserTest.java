@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserTest {
@@ -39,6 +40,23 @@ public class UserTest {
         user.setId(4);
 
         List<User> users = userMapper.selectAllUsers(user);
+
+        System.out.println(users);
+        users.stream().forEach(System.out::println);
+    }
+
+    @Test
+    public void getUsersForEach(){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //  List<User> users = sqlSession.selectList("userMapper.selectAllUsers");
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(4);
+        List<User> users = userMapper.forEachSelectUsers(ids);
 
         System.out.println(users);
         users.stream().forEach(System.out::println);
