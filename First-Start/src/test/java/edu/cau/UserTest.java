@@ -24,6 +24,7 @@ public class UserTest {
             SqlSession sqlSession = sqlSessionFactory.openSession();
 
             List<User> users = sqlSession.selectList("userMapper.selectAllUsers");
+
             System.out.println(users);
             users.stream().forEach(System.out::println);
 
