@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.cau.UserMapper">
+    <resultMap id="findAll" type="user">
+        <id column="id"  property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="birthday" property="birthday" />
+
+        <collection property="orderList" ofType="order">
+            <id column="oid" property="id" />
+            <id column="ordertime" property="orderTime" />
+            <id column="total" property="total" />
+        </collection>
+
+    </resultMap>
+    <select id="findAll" resultMap="findAll">
+        SELECT * ,o.`id` oid FROM USER u,orders o WHERE o.`uid` = u.`id`;
+    </select>
+
+
+    <resultMap id="findUserAndRole" type="user" >
+        <id column="userid"  property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="birthday" property="birthday" />
+
+        <collection property="roles" ofType="role">
+            <id column="roleid"  property="id" />
+            <result column="rolename" property="rolename" />
+            <result column="roleDesc" property="roledesc" />
+        </collection>
+    </resultMap>
+
+    <select id="findUserAndRole" resultMap="findUserAndRole">
+        SELECT * FROM user u ,sys_user_role ur,sys_role r WHERE u.`id`=ur.`userid` AND ur.`roleid`=r.`id`
+    </select>
+</mapper>
