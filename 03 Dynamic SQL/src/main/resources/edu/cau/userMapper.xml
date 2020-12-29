@@ -4,8 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.cau.UserMapper">
 
-    <select id="selectAllUsers" parameterType="edu.cau.User" resultType="edu.cau.User">
+    <sql id="selectUserSql">
         select * from users
+    </sql>
+
+    <select id="selectAllUsers" parameterType="edu.cau.User" resultType="edu.cau.User">
+        <include refid="selectUserSql"></include>
         <where>
             <if test="id != 0 ">
                 id = #{id}
@@ -17,7 +21,7 @@
       </select>
 
     <select id="forEachSelectUsers" parameterType="list" resultType="edu.cau.User">
-        select * from users
+        <include refid="selectUserSql"></include>
         <where>
             <foreach collection="list" item="userId"
                      open="id in (" separator="," close=")" >
