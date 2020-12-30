@@ -13,7 +13,7 @@ public class ItemServiceImp implements ItemService{
     @Autowired
     private ItemMapper itemMapper;
 
-    public Item findItem() {
-        return itemMapper.findItem(1);
+    public Item findItem(int id) {
+        return itemMapper.findItem(id);
     }
 }
